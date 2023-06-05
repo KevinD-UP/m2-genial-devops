@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+    backend:
+        build:
+          context: ./backend
+          dockerfile: Dockerfile
+        networks:
+          - tp1-network
+        depends_on:
+          - database
+
+    database:
+        build:
+          context: ./database
+          dockerfile: Dockerfile 
+        environment:
+          - POSTGRES_USER=usr
+          - POSTGRES_PASSWORD=pwd
+          - POSTGRES_DB=db
+        networks:
+          - tp1-network
+        volumes:
+          - my_volume:/var/liv/postgresql/data
+
+    httpd:
+        build:
+          context: ./http-server
+          dockerfile: Dockerfile
+        ports:
+          - 81:80
+        networks:
+          - tp1-network
+        depends_on:
+          - backend 
+          - database
+
+networks:
+  tp1-network:
+
+volumes: 
+  my_volume:
+
