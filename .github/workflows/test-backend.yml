@@ -24,5 +24,4 @@ jobs:
       - name: Build and test with Maven
         run: |
           cd TP1/backend
-          mvn clean verify
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinD-UP_m2-genial-devops -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinD-UP_m2-genial-devops -Dsonar.login=${{ secrets.SONAR_TOKEN }}
