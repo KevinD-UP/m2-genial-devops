@@ -22,7 +22,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and test with Maven
-        run: |
+        run:|
 			cd TP1/backend
 			mvn test
 
