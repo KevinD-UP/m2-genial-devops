@@ -40,20 +40,20 @@ jobs:
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
-          context: ./backend
+          context: ./TP1/backend
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops/backend
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
-          context: ./database
+          context: ./TP1/database
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops/database
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
-          context: ./http-server
+          context: ./TP1/http-server
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops/httpd
           push: ${{ github.ref == 'refs/heads/main' }}
