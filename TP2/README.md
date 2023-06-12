@@ -45,3 +45,35 @@ jobs:
 ```
 
 ## 2-3 Document your quality gate configuration.
+
+To configure the quality gate in SonarCloud, you can follow these steps:
+
+1. Go to the SonarCloud website (https://sonarcloud.io) and sign in to your account.
+
+2. Select the project you want to configure the quality gate for.
+
+3. Click on "Quality Gates" in the left sidebar.
+
+4. Create a new quality gate by clicking on the "+ Create" button.
+
+5. Give your quality gate a name and define the conditions for passing or failing. These conditions can include metrics such as code coverage, code duplication, code smells, and other code quality metrics. You can define thresholds for each metric based on your project requirements.
+
+6. Save the quality gate configuration.
+
+In the test job we can now add this command :
+```yaml
+mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinD-UP_m2-genial-devops -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+```
+
+For now, we are using Sonar way which is the default quality gate.
+
+Here is the spec :
+
+Conditions
+
+- Coverage is less than 80.0%
+- Duplicated Lines (%) is greater than 3.0%
+- Maintainability Rating is worse than A
+- Reliability Rating is worse than A
+- Security Hotspots Reviewed is less than 100%
+- Security Rating is worse than A
