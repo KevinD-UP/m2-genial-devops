@@ -31,6 +31,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
@@ -54,7 +57,3 @@ jobs:
           context: ./http-server
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd
           push: ${{ github.ref == 'refs/heads/main' }}
-      
-      run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          
-		
