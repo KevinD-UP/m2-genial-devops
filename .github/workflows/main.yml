@@ -25,7 +25,7 @@ jobs:
         run: |
           cd TP1/backend
           mvn clean verify
-          mvn -B verify sonar:sonar -Dsonar.projectKey=KevinD-UP_m2-genial-devops -Dsonar.organization=m2-genial-devops -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinD-UP_m2-genial-devops -Dsonar.organization=m2-genial-devops -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           
   build-and-push-docker-image:
     needs: test-backend
