@@ -36,7 +36,6 @@ jobs:
 
       - name: Build image and push backend
         uses: docker/build-push-action@v3
-        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
         with:
           context: ./backend
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/
@@ -55,3 +54,7 @@ jobs:
           context: ./http-server
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd
           push: ${{ github.ref == 'refs/heads/main' }}
+      
+      run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          
+		
