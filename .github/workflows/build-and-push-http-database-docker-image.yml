@@ -1,0 +1,42 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+
+  build-and-push-database-image:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ./TP1/database
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/database
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+  build-and-push-httpd-image:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ./TP1/http-server
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/httpd
+          push: ${{ github.ref == 'refs/heads/main' }}
