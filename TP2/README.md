@@ -12,3 +12,36 @@ Testcontainers leverages containerization technologies like Docker to manage the
 
 ## 2-2 Document your Github Actions configurations.
 
+```yaml
+name: CI devops 2023
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+        # This step checks out your repository's code for the workflow to run on
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'adopt'
+        # This step sets up JDK 17 for the workflow to use
+
+      - name: Build and test with Maven
+        run: |
+          cd TP1/backend
+          mvn test
+        # This step changes the directory to 'TP1/backend' and runs the 'mvn test' command to build and test your backend code
+```
+
