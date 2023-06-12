@@ -35,15 +35,18 @@ jobs:
 	  # steps to perform in job
 	  steps:
 	    - name: Checkout code
-	      uses: actions/checkout@v2.5.0
-
+	      uses: actions/checkout@v2.5.
+	      
 	    - name: Build image and push backend
           uses: docker/build-push-action@v3
+          run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
           with:
 		    # relative path to the place where source code with Dockerfile is located
 		    context: ./backend
 		    # Note: tags have to be all lower-case
-		    tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/backend
+		    tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/
+			# build on feature branches, push only on main branch
+            push: ${{ github.ref == 'refs/heads/main' }}
 
 	    - name: Build image and push database
           uses: docker/build-push-action@v3
@@ -52,6 +55,8 @@ jobs:
 		    context: ./database
 		    # Note: tags have to be all lower-case
 		    tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/database
+		    # build on feature branches, push only on main branch
+            push: ${{ github.ref == 'refs/heads/main' }}
 
 	    - name: Build image and push httpd
 	      uses: docker/build-push-action@v3
@@ -60,5 +65,7 @@ jobs:
 		    context: ./http-server
 		    # Note: tags have to be all lower-case
 		    tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/httpd
+		    # build on feature branches, push only on main branch
+            push: ${{ github.ref == 'refs/heads/main' }}
 
 
