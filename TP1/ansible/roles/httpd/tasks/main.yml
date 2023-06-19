@@ -10,3 +10,8 @@
     # Add other necessary parameters (e.g., environment variables, volumes, ports, etc.)
     ports:
       - 80:80
+
+- name: Restart Apache HTTPD
+  service:
+    name: apache2
+    state: restarted
