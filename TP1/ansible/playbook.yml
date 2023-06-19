@@ -1,0 +1,27 @@
+#- hosts: all
+#  gather_facts: false
+#  become: yes
+
+#  tasks:
+#    - name: Test connection
+#      ping:
+
+- hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Import Docker role
+      import_role:
+        name: docker
+    - name: Import network role
+      import_role:
+        name: network        
+    - name: Import database role
+      import_role:
+        name: database
+    - name: Import backend role
+      import_role:
+        name: backend
+    - name: Import httpd role
+      import_role:
+        name: httpd

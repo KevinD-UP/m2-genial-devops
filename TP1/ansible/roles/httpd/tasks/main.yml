@@ -1,0 +1,12 @@
+---
+# tasks file for roles/http-server
+- name: Run httpd container
+  docker_container:
+    name: httpd
+    image: kevindang01/httpd:latest
+    networks:
+      - name: my_network
+        aliases: ['httpd']
+    # Add other necessary parameters (e.g., environment variables, volumes, ports, etc.)
+    ports:
+      - 80:80

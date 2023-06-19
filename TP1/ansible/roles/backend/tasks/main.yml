@@ -1,0 +1,10 @@
+---
+# tasks file for roles/backend
+- name: Run backend container
+  docker_container:
+    name: backend
+    image: kevindang01/backend:latest
+    networks:
+      - name: my_network
+        aliases: ['backend']
+    # Add other necessary parameters (e.g., environment variables, volumes, ports, etc.)

@@ -1,0 +1,25 @@
+name: Build and Push Frontend Docker Image
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+
+  build-and-push-frontend-image:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      - name: Build image and push frontend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./TP1/devops-front
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-front
+          push: true

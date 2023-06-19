@@ -1,4 +1,4 @@
-name: Build and Push Http and Frontend Docker Image
+name: Build and Push Http and database Docker Image
 
 on:
   push:
