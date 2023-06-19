@@ -8,8 +8,6 @@
       - name: my_network
         aliases: ['database']
     # Add other necessary parameters (e.g., environment variables, volumes, ports, etc.)
-    ports:
-      - 5432:5432
     env:
       POSTGRES_DB: db
       POSTGRES_USER: usr
