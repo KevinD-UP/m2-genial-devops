@@ -14,3 +14,5 @@
       POSTGRES_DB: db
       POSTGRES_USER: usr
       POSTGRES_PASSWORD: pwd 
+    volumes:
+      - my_volume:/var/liv/postgresql/data

@@ -1,0 +1,5 @@
+---
+# tasks file for roles/volume
+- name: Create Docker volume
+  docker_volume:
+    name: my_volume

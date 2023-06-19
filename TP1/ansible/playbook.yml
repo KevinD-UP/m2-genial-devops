@@ -15,7 +15,10 @@
         name: docker
     - name: Import network role
       import_role:
-        name: network        
+        name: network    
+    - name: Import volume role
+      import_role:
+        name: volume    
     - name: Import database role
       import_role:
         name: database
