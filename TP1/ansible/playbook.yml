@@ -25,3 +25,6 @@
     - name: Import httpd role
       import_role:
         name: httpd
+    - name: Import frontend role
+      import_role:
+        name: frontend

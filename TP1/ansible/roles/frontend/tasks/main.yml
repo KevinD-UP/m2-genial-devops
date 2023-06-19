@@ -1,0 +1,11 @@
+---
+# tasks file for roles/frontend
+- name: Run frontend container
+  docker_container:
+    name: devops-front
+    image: kevindang01/devops-front:latest
+    networks:
+      - name: my_network
+        aliases: ['devops-front']
+    # Add other necessary parameters (e.g., environment variables, volumes, ports, etc.)
+    
